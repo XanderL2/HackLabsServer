@@ -2,20 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agencia Viajes</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackLabs</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/index.styles.css')}}">
+  <link rel="icon" type="image/png" sizes="180x180"   href="{{ url_for('static', filename='/resources/images/logo-removebg-preview.png') }}">
 
 </head>
 
-
 <body>
 
-
-
-    <h1>Is alive!</h1>
-
+  <div class="grid">
+    <div>
+      <h1>CSS Filters + mix-blend-mode extreme contrast</h1>
+      <p>hover or focus an image to see the original photo.</p>
+    </div>
+    <figure>
+      <img
+        src="https://images.unsplash.com/photo-1552168324-d612d77725e3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTQ5NTU1ODB8&ixlib=rb-4.0.3&q=85"
+        alt="A person tossing an analog camera into the air in a darkened room with blue and red lighting. "
+        title="photo by Julius Drost for Unsplash">
+    </figure>
+    <figure>
+      <img
+        src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTQ5NTU3MTJ8&ixlib=rb-4.0.3&q=85"
+        alt="A group of people partying in a room lit with neon lights. " title="photo by Aleksandr Popov for Unsplash">
+    </figure>
+    <figure>
+      <img
+        src="https://images.unsplash.com/photo-1571450669798-fcb4c543f6a4?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTQ5NTU4Njl8&ixlib=rb-4.0.3&q=85"
+        alt="'Let's Get Weird' in pink neon. " title="photo by Jon Tyson for Unsplash">
+    </figure>
+  </div>
 
 </body>
+
 </html>
