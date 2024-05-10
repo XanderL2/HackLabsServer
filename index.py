@@ -4,10 +4,9 @@ import requests as req;
 
 import configs;
 import controllers.authentication as auth;
+from configs import HOST, API_PORT
 
-
-
-
+endpoint =  f'http://{HOST}:{API_PORT}/api/';
 
 
 
@@ -24,7 +23,7 @@ def root():
 
 
 
-    return render_template('index.html');
+    return render_template('index.html', endpoint=endpoint + "/users");
 
 
 
@@ -61,4 +60,4 @@ def index():
 
 
 #Server running on:
-app.run(host=configs.HOST, port=configs.PORT, debug=False);
+app.run(host=configs.HOST, port=configs.PORT, debug=True);
