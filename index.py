@@ -2,6 +2,15 @@ from flask import Flask, render_template, request;
 import requests as req;
 
 
+import configs;
+import controllers.authentication as auth;
+
+
+
+
+
+
+
 
 app = Flask(__name__);
 
@@ -11,11 +20,12 @@ app = Flask(__name__);
 def root():
     
 
-
+    response = auth.AuthUser("password", "xd");
 
 
 
     return render_template('index.html');
+
 
 
 @app.route("/login", methods = ['GET', 'POST'])
@@ -25,6 +35,7 @@ def register():
 
 
     return render_template('login.html');
+
 
 
 
@@ -50,4 +61,4 @@ def index():
 
 
 #Server running on:
-app.run(host="localhost", port=5000, debug=True);
+app.run(host=configs.HOST, port=configs.PORT, debug=False);
