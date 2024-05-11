@@ -17,17 +17,14 @@ def Authentication(requestForm):
     };
 
 
-    print(data)
-
     try:
 
         response = req.post(endpoint + "/login", json=data);
         return response
 
     except Exception as e: 
-
         print(e);
-        return False;
+        return e;
 
     
     

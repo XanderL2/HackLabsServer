@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" sizes="180x180"
+        href="{{ url_for('static', filename='/resources/images/logo-removebg-preview.png') }}">
+
+
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/errorPage.styles.css')}}">
+
+    <title>Error {{error}}!</title>
+</head>
+
+<body>
+
+    <div id="main">
+        <div class="fof">
+            <h1>Error {{error}}</h1>
+
+        </div>
+    </div>
+</body>
+
+</html>
