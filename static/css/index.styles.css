@@ -43,6 +43,7 @@ p {
 figure,
 img {
     transition: all .2s ease-in-out;
+
 }
 
 figure {
@@ -57,6 +58,7 @@ figure {
     &:nth-of-type(2) {
         background-color: yellowgreen;
     }
+
 }
 
 img {
@@ -72,6 +74,29 @@ img {
     clip-path: rect(1% 99% 99% 1%);
 
 }
+
+.hiddenText {
+
+
+    top: 100%;
+
+
+    opacity: 1;
+    transition: opacity 0.3s;
+
+    font-size: 20px;
+
+    color: rgb(0, 0, 0);
+
+
+    font-family: "Orbitron", sans-serif !important;
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+
+
 
 figure:has(img:hover, img:focus) {
 
@@ -310,7 +335,7 @@ li:nth-of-type(4) {
 
 
 /*  * Footer Styles */
-  .footer{
+.footer {
     background: rgb(0, 0, 0);
     display: flex;
     width: 100%;
@@ -321,9 +346,9 @@ li:nth-of-type(4) {
     border-top: solid 1px #ffffff;
     overflow: auto;
     margin: 0%;
-  }
-  
-  .header__nav-list {
+}
+
+.header__nav-list {
     display: flex;
     list-style: none;
     justify-content: space-evenly;
@@ -331,32 +356,32 @@ li:nth-of-type(4) {
     width: 900px;
     background-color: rgb(0, 0, 0);
     height: 40px;
-  }
-  .header__nav-item-link {
+}
+
+.header__nav-item-link {
     text-decoration: none;
     background-color: rgb(0, 0, 0);
-    color:white;
+    color: white;
     border-bottom: 2px solid transparent;
-    transition: border-bottom 0.3s, transform 0.3s; 
+    transition: border-bottom 0.3s, transform 0.3s;
     display: inline-block;
-  } 
-  
-  .header__nav-item-link:hover {
+}
+
+.header__nav-item-link:hover {
     border-bottom: 2px solid #ffffff;
     transform: scale(1.05);
-    
-  }
-  
-  .header__nav-item {
+
+}
+
+.header__nav-item {
     margin-right: 2%;
     text-decoration: none;
-    
-  }
-  
-  .header__logoLP {
-    
+
+}
+
+.header__logoLP {
     max-width: 8%;
     margin-right: 30%;
     background-color: transparent;
-    
-  }
+
+}

@@ -4,17 +4,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Quicksand', sans-serif;
+
+    font-family: 'Quicksand', sans-serif !important;
+
 }
 
 body {
+
     background-image: url('../resources/images/background.png') !important;
-    background-size: auto !important;
+    background-size: cover !important;
     background-position: top !important;
     background-repeat: no-repeat !important;
 
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.573);
+
+
+
+
+    backdrop-filter: blur(10px) brightness(35%);
+
+
     position: absolute;
     top: 0;
     left: 0;
@@ -29,7 +37,6 @@ body {
     width: 100%;
     overflow: hidden;
 }
-
 .ring {
     position: relative;
     width: 500px;
@@ -99,6 +106,7 @@ body {
 
 .login h2 {
     font-size: 2em;
+    font-weight: bold;
     color: #fff;
 }
 

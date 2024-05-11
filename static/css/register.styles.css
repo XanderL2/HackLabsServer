@@ -14,7 +14,9 @@ body {
     background-repeat: repeat !important;
 
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.3);
+
+    backdrop-filter: blur(10px) brightness(35%);
+
     position: absolute;
     top: 0;
     left: 0;

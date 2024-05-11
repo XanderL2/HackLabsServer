@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="{{url_for('static', filename='css/login.styles.css')}}">
     <link rel="icon" type="image/png" sizes="180x180"
         href="{{ url_for('static', filename='/resources/images/logo-removebg-preview.png') }}">
@@ -24,7 +23,7 @@
         <i style="--clr:#fffd44;"></i>
 
 
-        <div class="login">
+        <form class="login" method="post">
 
             <h2>Hack Labs Login</h2>
 
@@ -42,15 +41,24 @@
                 <input type="submit" value="Sign in">
             </div>
 
+                
+            {% if error %}
+                
+                <h1 class="error" style="color: #ff0057;">{{error}}</h1>
+            {% else %}
+
+                <h1 class="error" style="color: #5eff00;">Correcto</h1>
+            {% endif %}
+
             <div class="links">
-                <a href="#">rorget Password</a>
-                <a href="#">Signup</a>
+                <a href="register">Register</a>
             </div>
 
 
-        </div>
+        </form>
     </div>
 
+    
 
 </body>
 
