@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for, session;
-import jwt;
 
 
 #Modules
@@ -7,7 +6,7 @@ import configs;
 from controllers.authentication import Authentication;
 from controllers.register import Register;
 from controllers.sessionController import EstablishSesion;
-
+from controllers.main import GetUserInfo, GetUserStatistics;
 
 
 #Environment Variables
@@ -19,15 +18,6 @@ from configs import HOST, API_PORT, SECRET
 endpoint =  f'http://{HOST}:{API_PORT}/api/';
 app = Flask(__name__);
 app.secret_key = SECRET;
-
-
-# Remove Cache 
-# @app.after_request
-# def add_header(response):
-#     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-#     response.headers['Pragma'] = 'no-cache'
-#     response.headers['Expires'] = '0'
-#     return response
 
 
 
@@ -70,6 +60,7 @@ def POSTregister():
 
 
 
+
 #Login Routes
 @app.route("/login", methods = ['GET'])
 def GETLogin():
@@ -99,7 +90,8 @@ def POSTLogin():
         EstablishSesion(token);
 
 
-        resp = make_response(render_template("main.html"))
+
+        resp = make_response(redirect(url_for("index")))
         resp.set_cookie('token', token)
 
 
@@ -128,13 +120,16 @@ def VerifyAuthentication():
 
     
 
-#! Private Routeb 
+#! Privates Routes
 @app.route("/main", methods = ['GET'])
 def index():
 
+    userInfo = GetUserInfo(session.get("userId"))[0];
+    userStatistics = GetUserStatistics(session.get("userId"));    
+     
 
 
-    return render_template('main.html');
+    return render_template('main.html', username=userInfo.get("username"), userStatistics=userStatistics);      
 
 
        
@@ -149,4 +144,4 @@ def index():
 
 
 #Server running on:
-app.run(host=configs.HOST, port=configs.PORT, debug=True);
+app.run(host=configs.HOST, port=configs.PORT, debug=False);

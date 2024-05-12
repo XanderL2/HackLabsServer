@@ -1,4 +1,4 @@
-from flask import Flask, session;
+from flask import session;
 import jwt;
 
 from configs import SECRET;
@@ -6,6 +6,7 @@ from configs import SECRET;
 
 
 def EstablishSesion(token):
+
 
          
     decoded_token = jwt.decode(token, SECRET, algorithms=['HS256']);
@@ -15,6 +16,8 @@ def EstablishSesion(token):
 
     session["userId"] = userId;
     session["userRole"] = userRole;
+    session["token"] = token
+
 
 
 
