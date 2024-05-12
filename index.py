@@ -1,28 +1,33 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for;
-import requests as req;
+from flask import Flask, render_template, request, make_response, redirect, url_for, session;
+import jwt;
 
 
+#Modules
 import configs;
 from controllers.authentication import Authentication;
 from controllers.register import Register;
+from controllers.sessionController import EstablishSesion;
 
 
-from configs import HOST, API_PORT
+
+#Environment Variables
+from configs import HOST, API_PORT, SECRET
 
 
 
 
 endpoint =  f'http://{HOST}:{API_PORT}/api/';
 app = Flask(__name__);
+app.secret_key = SECRET;
 
 
 # Remove Cache 
-@app.after_request
-def add_header(response):
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
-    return response
+# @app.after_request
+# def add_header(response):
+#     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+#     response.headers['Pragma'] = 'no-cache'
+#     response.headers['Expires'] = '0'
+#     return response
 
 
 
@@ -34,12 +39,10 @@ def root():
 
 
 
-
-
-
 #Register Routes
 @app.route("/register", methods = ['GET'])
 def GETregister():
+    if (session.get("userId") != None): return redirect(url_for("index"));
     return render_template('register.html');
 
 
@@ -62,27 +65,26 @@ def POSTregister():
 
 
     except Exception as e:
-        print(e);
-        return render_template('errorPage.html', error=500), 500  
+        return render_template('errorPage.html', error=500, e=e), 500  
 
 
 
 
 #Login Routes
-
 @app.route("/login", methods = ['GET'])
 def GETLogin():
+    if (session.get("userId") != None): return redirect(url_for("index"));
     return render_template('login.html');
-
 
 
 
 @app.route("/login", methods = ['POST'])
 def POSTLogin():
 
+
+
     try:
         
-
         response = Authentication(request.form)
         body = response.json();
 
@@ -94,56 +96,41 @@ def POSTLogin():
         token = body.get("x-access-token");
 
 
-        resp = make_response(render_template("login.html"))
+        EstablishSesion(token);
+
+
+        resp = make_response(render_template("main.html"))
         resp.set_cookie('token', token)
+
 
         return resp;
 
     except Exception as e:
-        return render_template('errorPage.html', error=500), 500  
+
+        return render_template('errorPage.html', error=500, e=e), 500  
 
 
 
 
 
+#! Authentication middleware
+@app.before_request
+def VerifyAuthentication():
 
 
+    isNotPublicRoute = request.endpoint not in ['root', 'GETregister', 'POSTregister', 'GETLogin', 'POSTLogin'];
+    isNotStaticRoute = not request.path.startswith('/static')
+    isUserNotAuthenticated = 'userId' not in session
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@app.route("/main", methods = ['GET', 'POST'])
-def index():
     
+    if isNotPublicRoute and isNotStaticRoute and isUserNotAuthenticated:
+        return redirect(url_for('GETLogin')); 
+
+    
+
+#! Private Routeb 
+@app.route("/main", methods = ['GET'])
+def index():
 
 
 
@@ -151,6 +138,14 @@ def index():
 
 
        
+
+
+
+
+
+
+
+
 
 
 #Server running on:
