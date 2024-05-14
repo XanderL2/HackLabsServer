@@ -1,8 +1,8 @@
 import requests as req;
-from configs import HOST, API_PORT;
+from configs import HOST, API_PORT, API_PROTOCOL;
 
 
-endpoint =  f'http://{HOST}:{API_PORT}/api/';
+endpoint =  f'{API_PROTOCOL}://{HOST}:{API_PORT}/api/';
 
 
 

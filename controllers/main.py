@@ -1,7 +1,6 @@
 import requests as req;
 
 from flask import session;
-from configs import HOST, API_PORT;
 from controllers.register import endpoint;
 
 
@@ -24,8 +23,6 @@ def GetUserStatistics(userId):
     }
     
 
-    print(response.status_code)
-
     if(response.status_code != 200):
         return statistics;    
 
@@ -43,6 +40,12 @@ def GetUserStatistics(userId):
     
     return statistics;
     
+
+def GetUsers():
+    response = req.get(endpoint + f"/users/");
+    response = response.json();
+
+    return response;
 
 
 

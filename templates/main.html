@@ -40,7 +40,7 @@
 
 
 
-        <!--      MENU        -->
+            <!--      MENU        -->
 
             <div class="side-wrapper">
 
@@ -64,7 +64,7 @@
                         </svg>
                         Statistics
                     </a>
-               </div>
+                </div>
             </div>
 
 
@@ -76,13 +76,30 @@
 
 
 
-        <!--      Favorite Tools        -->
+            <!--      Favorite Tools        -->
 
 
 
             <div class="side-wrapper">
                 <div class="side-title">YOUR FAVOURITE TOOLS</div>
                 <div class="side-menu">
+
+
+
+
+
+
+
+
+                    {% if tools == False%}
+                    <p style="margin-top: 50%; margin-left: 20%;">No hay registros</p>
+                    {% else %}
+
+
+                    {% for item in tools%}
+
+
+
                     <a href="#">
                         <svg viewBox="0 0 56 58" width="512" xmlns="http://www.w3.org/2000/svg">
                             <g fill="none" transform="translate(0 -1)">
@@ -107,10 +124,59 @@
                                     fill="#7f6e5d" />
                             </g>
                         </svg>
-                        Offensive 
+                        {{item}}
                     </a>
 
-                   </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {% endfor %}
+
+
+
+
+                    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- </a>
+
+
+
+
+
                     <a href="#"><svg viewBox="0 0 511.4 511.4" width="512" xmlns="http://www.w3.org/2000/svg">
                             <path d="M102.8 145c-47.5 0-86 38.6-86 86v29.3h168.6V145z" fill="#0dca71" />
                             <path d="M432.9 377.8l-43-70.8-95.1 60.2 84 144.2 25.2-15.3a86.2 86.2 0 0028.9-118.3z"
@@ -133,8 +199,20 @@
                             </g>
                         </svg>
                         Defensive
-                    </a>
-               </div>
+                    </a> -->
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
             </div>
 
 
@@ -158,7 +236,7 @@
 
                 <span class="developer">
                     <img src="https://pbs.twimg.com/profile_images/1253782473953157124/x56UURmt_400x400.jpg" />
-                    Alex — @XanderL2 
+                    Alex — @XanderL2
                 </span>
             </a>
 
@@ -186,10 +264,9 @@
                         <div class="profile-name">{{username}}</div>
                     </div>
 
-                <!-- ?      Avatar   -->
+                    <!-- ?      Avatar   -->
 
-                    <img src="../static/resources/images/background.png"
-                        alt="" class="profile-cover">
+                    <img src="../static/resources/images/background.png" alt="" class="profile-cover">
 
 
 
@@ -255,8 +332,7 @@
                         <!-- ?      Events    -->
                         <div class="event box">
                             <div class="event-wrapper">
-                                <img src="../static/resources/images/logo.png"
-                                    class="event-img" />
+                                <img src="../static/resources/images/logo.png" class="event-img" />
                                 <div class="event-date">
                                     <div class="event-month">June</div>
                                     <div class="event-day">11</div>
@@ -275,10 +351,10 @@
                     <div class="timeline-right">
 
 
-                        
+
                         <!-- ?      Statistics      -->
 
-                        
+
 
                         <div class="album box">
 
@@ -318,7 +394,7 @@
 
 
                             <!-- <div class="album-actions"> -->
-                                <!-- <a href="#" class="album-action">
+                            <!-- <a href="#" class="album-action">
                                     <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
                                         stroke-linejoin="round" viewBox="0 0 24 24">
                                         <path
@@ -402,7 +478,7 @@
                 <!--? Log out Buton-->
 
                 <button class="account-button">
-                        <p style="font-weight: 900; color: rgb(0, 126, 114);">Logout</p>
+                    <p style="font-weight: 900; color: rgb(0, 126, 114);">Logout</p>
                 </button>
 
                 <button class="account-button">
@@ -428,52 +504,41 @@
 
 
 
-        <!--? TOPS-->
+            <!--? TOPS-->
 
 
             <div class="side-wrapper stories">
 
 
                 <div class="side-title">TOP</div>
+
+
+                {% for user in topUsers%}
+
+
+
                 <div class="user">
                     <img src="https://pbs.twimg.com/profile_images/1102351320567164931/ZCkJgJIH.png" alt=""
                         class="user-img">
-                    <div class="username">Lisandro Matos
-                        <div class="album-date">12 hours ago</div>
+                    <div class="username">{{user['username']}}
+                        <div class="album-date">Age: {{user['age']}}</div>
                     </div>
                 </div>
 
 
 
-                <div class="user">
-                    <img src="https://pbs.twimg.com/profile_images/1153966095444992000/1lpIyHaQ.jpg" alt=""
-                        class="user-img">
-                    <div class="username">Gvozden Boskovsky
-                        <div class="album-date">29 minutes ago</div>
-                    </div>
-                </div>
 
 
-                <div class="user">
-                    <img src="https://images.unsplash.com/photo-1565464027194-7957a2295fb7?ixlib=rb-1.2.1&auto=format&fit=crop&w=3500&q=80"
-                        alt="" class="user-img">
-                    <div class="username">Hnek Fortuin
-                        <div class="album-date">3 hours ago</div>
-                    </div>
-                </div>
 
 
-                <div class="user">
-                    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"
-                        alt="" class="user-img">
-                    <div class="username">Lubomir Dvorak
-                        <div class="album-date">18 hours ago</div>
-                    </div>
-                </div>
+                {% endfor %}
+
+
+
             </div>
 
 
-            
+
 
 
 
@@ -483,76 +548,80 @@
 
                 <div class="side-title">Users</div>
 
-                <div class="user">
-                    <img src="https://randomuser.me/api/portraits/men/1.jpg" class="user-img">
-                    <div class="username">Andrei Mashrin
-                        <div class="user-status"></div>
-                    </div>
-                </div>
 
-                <div class="user">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=046c29138c1335ef8edee7daf521ba50"
-                        class="user-img">
-                    <div class="username">Aryn Jacobssen
-                        <div class="user-status offline"></div>
-                    </div>
-                </div>
-                <div class="user">
-                    <img src="https://images.unsplash.com/photo-1575084713138-342cae5f8d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=958&q=80"
-                        class="user-img">
-                    <div class="username">Carole Landu
-                        <div class="user-status offline"></div>
-                    </div>
-                </div>
-                <div class="user">
-                    <img src="https://images.pexels.com/photos/598745/pexels-photo-598745.jpeg?h=350&auto=compress&cs=tinysrgb"
-                        class="user-img">
-                    <div class="username">Chineze Afa
-                        <div class="user-status"></div>
-                    </div>
-                </div>
-                <div class="user">
-                    <img src="https://pbs.twimg.com/profile_images/2452384114/noplz47r59v1uxvyg8ku.png"
-                        class="user-img">
-                    <div class="username">Mok Kwang
-                        <div class="user-status"></div>
-                    </div>
-                </div>
-                <div class="user">
-                    <img src="https://randomuser.me/api/portraits/women/63.jpg" class="user-img">
-                    <div class="username">Naomi Yepes
-                        <div class="user-status"></div>
-                    </div>
-                </div>
-                <div class="user">
-                    <img src="https://images.unsplash.com/photo-1476493279419-b785d41e38d8?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=61eaea85f1aa3d065400179c78163f15"
-                        class="user-img">
-                    <div class="username">Shaamikh Ale
-                        <div class="user-status"></div>
-                    </div>
-                </div>
-                <div class="user">
-                    <img src="https://m.media-amazon.com/images/M/MV5BMjI4NDcyNjQxNl5BMl5BanBnXkFtZTgwMzI4OTM3NjM@._V1_UY256_CR13,0,172,256_AL_.jpg"
-                        class="user-img">
-                    <div class="username">Sofia Alcocer
-                        <div class="user-status idle"></div>
-                    </div>
-                </div>
-                <div class="user">
-                    <img src="https://images.unsplash.com/photo-1509380836717-c4320ccf1a6f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=e01c8c45a063daaf6d6e571a32bd6c90"
-                        class="user-img">
-                    <div class="username">Wen Yahui
-                        <div class="user-status"></div>
-                    </div>
-                </div>
-                <div class="user">
-                    <img src="https://pbs.twimg.com/profile_images/737221709267374081/sdwta9Oh.jpg" alt=""
-                        class="user-img">
-                    <div class="username">Leslee Moss
-                        <div class="user-status idle"></div>
-                    </div>
-                </div>
+
+
+
+
+
+
+
+
+
+                {% for user in users%}
+
+                    {% if user['state'] == 1%}
+
+                        <div class="user">
+                            <img src="https://randomuser.me/api/portraits/men/1.jpg" class="user-img">
+                            <div class="username">{{user['username']}}
+                                <div class="user-status"></div>
+                            </div>
+                        </div>
+
+
+                    {% else %}
+                    
+                        <div class="user">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=046c29138c1335ef8edee7daf521ba50"
+                                class="user-img">
+                            <div class="username">{{user['username']}}
+                                <div class="user-status offline"></div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+
+
+
+                {% endfor %}
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="search-bar right-search">
                 <input type="text" placeholder="Search" />
                 <div class="search-bar-svgs">
@@ -580,4 +649,5 @@
     </div>
 
 </body>
+
 </html>

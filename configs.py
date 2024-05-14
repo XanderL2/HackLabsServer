@@ -7,4 +7,4 @@ HOST = os.getenv("HOST", "localhost")
 PORT = os.getenv("PORT", "5000")
 API_PORT = os.getenv("API_PORT", 3000)
 SECRET = os.getenv("SECRET")
-
+API_PROTOCOL = os.getenv('API_PROTOCOL', 'http');

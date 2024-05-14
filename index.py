@@ -6,16 +6,23 @@ import configs;
 from controllers.authentication import Authentication;
 from controllers.register import Register;
 from controllers.sessionController import EstablishSesion;
-from controllers.main import GetUserInfo, GetUserStatistics;
+from controllers.main import GetUserInfo, GetUserStatistics, GetUsers;
+from analysis.FavoriteTools import FavoriteTools
+from analysis.TopUsers import TopUsers;
+
+
+
+
+
 
 
 #Environment Variables
-from configs import HOST, API_PORT, SECRET
+from configs import HOST, API_PORT, SECRET, API_PROTOCOL
 
 
 
 
-endpoint =  f'http://{HOST}:{API_PORT}/api/';
+endpoint =  f'{API_PROTOCOL}://{HOST}:{API_PORT}/api/';
 app = Flask(__name__);
 app.secret_key = SECRET;
 
@@ -73,7 +80,6 @@ def GETLogin():
 def POSTLogin():
 
 
-
     try:
         
         response = Authentication(request.form)
@@ -120,19 +126,73 @@ def VerifyAuthentication():
 
     
 
+
 #! Privates Routes
 @app.route("/main", methods = ['GET'])
 def index():
 
-    userInfo = GetUserInfo(session.get("userId"))[0];
-    userStatistics = GetUserStatistics(session.get("userId"));    
-     
+
+    userId = session.get("userId");
+
+    userInfo = GetUserInfo(userId)[0];
+    userStatistics = GetUserStatistics(userId);    
+    users = GetUsers();
+    tools = FavoriteTools(userId);
+    topUsers = TopUsers();
 
 
-    return render_template('main.html', username=userInfo.get("username"), userStatistics=userStatistics);      
+
+
+
+
+
+    return render_template('main.html', 
+                           username=userInfo.get("username"), 
+                           userStatistics=userStatistics, 
+                           users = users,
+                           tools = tools,
+                           topUsers = topUsers
+                    );      
 
 
        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route("/statistics", methods = ['GET'])
+def statistics():
+
+    
+
+    xd = TopUsers();
+
+
+    print(xd)
+
+
+
+    return "xd"
 
 
 
