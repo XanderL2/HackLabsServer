@@ -1,12 +1,16 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for, session;
 
 
-#Modules
+#Controllers
 import configs;
 from controllers.authentication import Authentication;
 from controllers.register import Register;
 from controllers.sessionController import EstablishSesion;
 from controllers.main import GetUserInfo, GetUserStatistics, GetUsers;
+from controllers.settings import PatchData;
+
+
+#Analisis
 from analysis.FavoriteTools import FavoriteTools
 from analysis.TopUsers import TopUsers;
 
@@ -159,6 +163,47 @@ def index():
 
 
 
+@app.route("/settings", methods = ['GET'])
+def GETsettings():
+    return render_template('settings.html')
+
+
+
+
+@app.route("/settings", methods = ['POST'])
+def POSTsettings():
+    
+    
+    response = PatchData(request.form, session)
+    
+
+
+    if(response == False): 
+        return render_template('settings.html', error = "Empty form");
+
+
+    
+    if(response.status_code == 400): 
+        
+        error = response.json(); 
+        error = error.get("Message")
+
+        
+        return render_template('settings.html', error = error);
+
+
+
+
+    
+
+
+    
+    
+
+    
+
+    return render_template('settings.html', error = False)
+
 
 
 
@@ -204,4 +249,4 @@ def statistics():
 
 
 #Server running on:
-app.run(host=configs.HOST, port=configs.PORT, debug=False);
+app.run(host=configs.HOST, port=configs.PORT, debug=True);

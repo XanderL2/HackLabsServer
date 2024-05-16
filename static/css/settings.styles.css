@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*,*:before,*:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    background: url("../resources/images/best1.jpeg");
+
+    backdrop-filter: blur(10px) brightness(35%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    place-items: center;
+}
+body, button,select {
+    font-family: 'Montserrat', sans-serif;
+}
+.container{
+    width: 100%;
+    max-width: 650px;
+    padding: 30px;
+    color: #8a398a;
+    background-color: #ffffff;
+    animation: appeare .8s linear ;
+    position: relative;
+    overflow: hidden;
+}
+.close{
+    transform: scale(0);
+    transition: all .8s;
+}
+.open{
+    transform: scale(1);
+    transition: all .8s;
+}
+@keyframes appeare {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@media(min-width:650px){
+    .container{
+        border-radius: 20px;
+        box-shadow: 0 4px 8px #f4f4f432;
+    }
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav >h1 {
+    font-size: 28px;
+}
+nav >.close-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+nav >.close-box >i{
+    font-size: 20px;
+}
+nav >.close-box >p{
+    padding-top: 2px;
+    font-size: 15px;
+}
+.main{
+    margin-top: 1.5rem;
+}
+.main > .above-hr{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.main > .above-hr >h5{
+    font-size: 17px;
+}
+.main > .above-hr >p{
+    font-size: 15px;
+    color: #222;
+}
+.main > .above-hr >.language-box >select{
+    width: 200px;
+    border: none;
+    border: 1px solid rgb(244, 244, 244);
+    box-shadow: 0 3px 6px rgb(223, 223, 223);
+    padding: 5px 10px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+.main > .above-hr >.language-box >select >option{
+    color: #984fdd;
+    background-color: #242424;
+    font-size: 15px;
+    border: none;
+}
+hr{
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid rgb(224, 224, 224);
+}
+.main >.under-hr{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.main >.under-hr >.autoplay-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main >.under-hr >.autoplay-box >.autoplay-caption{
+    width: 60%;
+}
+.main >.under-hr >.autoplay-box >.autoplay-caption >h5{
+    font-size: 16px;
+}
+.main >.under-hr >.autoplay-box >.autoplay-caption >p{
+    font-size: 15px;
+    margin-top: 6px;
+    color: #222;
+}
+.main >.under-hr >.showphotos-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main >.under-hr >.showphotos-box >.showphotos-caption{
+    width: 60%;
+}
+.main >.under-hr >.showphotos-box >.showphotos-caption >h5{
+    font-size: 16px;
+}
+.main >.under-hr >.showphotos-box >.showphotos-caption >p{
+    font-size: 15px;
+    margin-top: 6px;
+    color: #222;
+}
+
+.slide1, .slide2 {
+    width: 80px;
+    height: 26px;
+    background: #f5f5f5;
+    margin: 20px auto;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0 2px 4px rgb(202, 202, 202);
+}
+  
+.slide1:after,   .slide2:after {
+    content: 'OFF';
+    color: #333;
+    position: absolute;
+    right: 10px;
+    z-index: 0;
+    font: 12px/26px Arial, sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+}
+  
+.slide1:before, .slide2:before {
+    content: 'ON';
+    color: #984fdd; /* Aggiungi il colore attivo desiderato */
+    position: absolute;
+    left: 10px;
+    z-index: 0;
+    font: 12px/26px Arial, sans-serif;
+    font-weight: bold;
+}
+  
+.slide1 label, .slide2 label {
+    display: block;
+    width: 34px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+    background: #984fdd;
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+  
+input[type=checkbox] {
+    visibility: hidden;
+}
+  
+input[type=checkbox]:checked + label {
+    left: 43px;
+}
+.btns-box{
+    margin: 1rem 0;
+    width: 100%;
+    display: flex;
+    gap: 15px;
+}
+.btn-save, .btn-cancel{
+    width: 100px;
+    height: 35px;
+    color: #fff;
+    background-color: #8a398a;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    border-radius: 3px;
+    transition: transform .2s;
+}
+.btn-save:hover, .btn-cancel:hover{
+    transform: translateY(-3px);
+}
+.btn-cancel{
+    background-color: #fff;
+    box-shadow: inset 0 0 0 1px #8a398a;
+    color: #8a398a;
+}
+.saved-box{
+    position: absolute;
+    top: 0;
+    right: 130px;
+    background-color: #8a398a;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 0 0 6px 6px;
+    animation: shiftDown .6s linear;
+    display: none;
+}
+
+
+.input-container {
+  width: auto;
+  position: static;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.input-container label {
+  color: black;
+  position: relative;
+  top: 2px;
+  border: solid white;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  width: fit-content;
+  transition: transform 0.2s;
+  margin: 0px 0px 0px 12px;
+  padding: 0px 4px 0px 4px;
+  font-size: 20px;
+}
+
+.input-container input:focus + label {
+  color: rgb(161, 66, 249);
+  transform: scale(1.2);
+  transform: translateX(0.5rem);
+}
+
+.input-container input {
+  border: 2px rgb(161, 66, 249) solid;
+  padding: 8px;
+}
+
+.input-container input:focus {
+  outline: none;
+}
+
+.custum-file-upload {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #cacaca;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 48px 35px -48px rgba(0,0,0,0.1);
+}
+
+.custum-file-upload .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custum-file-upload .icon svg {
+  height: 80px;
+  fill: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custum-file-upload .text span {
+  font-weight: 400;
+  color: rgba(75, 85, 99, 1);
+}
+
+.custum-file-upload input {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+@keyframes shiftDown {
+    from{
+        transform: translateY(-100px);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+ 
