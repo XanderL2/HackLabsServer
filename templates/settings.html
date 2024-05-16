@@ -19,7 +19,7 @@
 
 
 
-    <form class="container" method="post">
+    <form class="container" method="post" enctype="multipart/form-data">
         <nav>
             <h1 class="settingsP">Settings</h1>
             <div class="close-box">
@@ -36,8 +36,7 @@
                 <h5 class="languageP">Change Username</h5>
 
 
-                <p class="languagePP">Let us know which language you're most comfortable using. You can change it back
-                    at any time.</p>
+                <p class="languagePP">The username must be unique and can only have alphanumeric characters, underscores and middle dashes.</p>
 
 
 
@@ -61,7 +60,7 @@
                 <div class="autoplay-box">
                     <div class="autoplay-caption">
                         <h5 class="autoplayP">Change Age</h5>
-                        <p class="autoplayPP">Choose if you w</p>
+                        <p class="autoplayPP">You have to be over 14 years old to enter!</p>
                     </div>
 
                     <div class="input-container">
@@ -77,7 +76,7 @@
                 <div class="autoplay-box">
                     <div class="autoplay-caption">
                         <h5 class="autoplayP">Change Password</h5>
-                        <p class="autoplayPP">Choose if you w</p>
+                        <p class="autoplayPP">The password must be greater than 8 digits for more security</p>
                     </div>
 
                     <div class="input-container">
@@ -93,7 +92,8 @@
 
                     <div class="showphotos-caption">
                         <h5 class="showP">Change Profile Photo</h5>
-                        <p class="showPP">Choose whether to show or hide profile photos at other members.</p>
+                        <p class="showPP">Only jpg and png files are allowed</p>
+
                     </div>
 
 
@@ -116,7 +116,7 @@
                             <span>Click to upload image</span>
                         </div>
 
-                        <input type="file" id="file" name="photo">
+                        <input type="file" id="file" name="photo" accept="image/*">
                     </label>
 
 

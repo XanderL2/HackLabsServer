@@ -1,3 +1,4 @@
+import os;
 import requests as req;
 from configs import HOST, API_PORT, API_PROTOCOL;
 
@@ -36,7 +37,42 @@ def PatchData(form, session):
     
 
     
+def SavePhoto(filesDict, session):
 
+
+    photo = filesDict.get('photo');   
+
+    if(photo == None):
+        return False;
+
+
+
+    userId = session.get("userId");
+    listsImages = os.listdir("../static/profile")
+
+    
+    for image in listsImages:
+        if(image == f"{userId}.png"): 
+            os.remove(f"../static/profile/{userId}.png");
+
+    
+
+    
+
+    photo.save('/static/profile', )
+    
+
+
+
+
+    
+
+    
+    
+
+     
+    
+    
 
 
 
