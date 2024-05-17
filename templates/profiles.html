@@ -259,7 +259,7 @@
                 <!-- ? User Profile                  -->
                 <div class="profile">
                     <div class="profile-avatar">
-                        <img src="{{user['photo']}}" alt=""
+                        <img src="../{{user['photo']}}" alt=""
                             class="profile-img">
                         <div class="profile-name">{{user["username"]}}</div>
                     </div>
@@ -502,9 +502,9 @@
 
                 <!--? Account  -->
                 <span class="account-user" id="UserMenu">{{username}}
-                    <a href="settings">
+                    <a href="/settings">
 
-                        <img src="{{user['photo']}}" alt=""
+                        <img src="../{{sessionPhoto}}" alt=""
                         class="account-profile" alt="">
 
 
@@ -532,7 +532,7 @@
 
 
                 <a class="user" href="/main/{{user['id']}}">
-                    <img src="{{user['photo']}}" alt=""
+                    <img src="../{{user['photo']}}" alt=""
                         class="user-img">
                     <div class="username">{{user['username']}}
                         <div class="album-date">Age: {{user['age']}}</div>
@@ -577,7 +577,7 @@
                     {% if user['state'] == 1%}
 
                         <a class="user" href="/main/{{user['id']}}">
-                            <img src="{{user['photo']}}" class="user-img">
+                            <img src="../{{user['photo']}}" class="user-img">
                             <div class="username">{{user['username']}}
                                 <div class="user-status"></div>
                             </div>
@@ -588,7 +588,7 @@
                     
                         <a class="user" href="/main/{{user['id']}}">
 
-                            <img src="{{user['photo']}}"
+                            <img src="../{{user['photo']}}"
                                 class="user-img">
                             <div class="username">{{user['username']}}
                                 <div class="user-status offline"></div>
@@ -668,3 +668,4 @@
 
 </body>
 </html>
+

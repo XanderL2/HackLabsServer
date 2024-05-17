@@ -8,9 +8,15 @@ from controllers.register import endpoint;
 
 def GetUserInfo(userId, json):
 
-    for user in json:
-        if(user.get("id") == userId): return user 
+    ExistsUser = False;
     
+    for user in json:
+        if(user.get("id") == userId): ExistsUser = user;
+
+
+    return ExistsUser;
+
+   
 
     
 

@@ -142,13 +142,9 @@ def index():
     
     userId = session.get("userId");
 
-
-    users = GetUsers(); 
-
-
+    users  = GetUsers();
     userInfo = GetUserInfo(userId, users);
     userStatistics = GetUserStatistics(userId);    
-
 
 
     tools = FavoriteTools(userId);
@@ -170,6 +166,53 @@ def index():
 
        
 
+
+@app.route('/main/<int:userId>')
+def userProfile(userId):
+
+
+    users  = GetUsers()
+
+
+    if(type(userId) != int):
+        return render_template('errorPage.html', error=400, e="Incorrect id!"), 400  
+
+
+
+    ExistsUser = GetUserInfo(userId, users);
+    if(ExistsUser == False):
+        return render_template('errorPage.html', error=404, e="User Not Exists!"), 404  
+
+
+    print(users)
+
+    
+    userStatistics = GetUserStatistics(userId);    
+    tools = FavoriteTools(userId);
+    topUsers = TopUsers(users);
+
+
+
+    return render_template('profiles.html', 
+                           sessionPhoto = GetUserInfo(session["userId"], users).get("photo"),
+                           user = ExistsUser, 
+                           userStatistics = userStatistics, 
+                           users = users,
+                           tools = tools,
+                           topUsers = topUsers
+
+                    );      
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/settings", methods = ['GET'])
 def GETsettings():
     
@@ -177,10 +220,7 @@ def GETsettings():
     token = session.get("token")    
     return render_template('settings.html', token = token)
 
-
-
-
-
+    
 
 @app.route("/settings", methods = ['POST'])
 def POSTsettings():
