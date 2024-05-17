@@ -405,18 +405,23 @@
 	 text-align: center;
 }
  .event-title {
-	 color: #c3c5d5;
+
+	 color: #c3c5d5 !important;
+
 	 margin-bottom: 5px;
 	 font-family: "DM Sans", sans-serif;
 	 font-weight: 600;
 	 padding: 0 14px;
+
 }
  .event-subtitle {
-	 color: #5c5e6e;
+
+	 color: #5c5e6e !important;
 	 font-family: "DM Sans", sans-serif;
 	 font-size: 13px;
 	 font-weight: 500;
 	 padding: 0 14px;
+
 }
  .pages {
 	 margin-top: 20px;
@@ -426,6 +431,8 @@
 	 display: flex;
 	 align-items: center;
 	 cursor: pointer;
+
+	text-decoration: none !important;
 }
  .user + .user {
 	 margin-top: 18px;
@@ -441,6 +448,7 @@
  .username {
 	 font-size: 15px;
 	 font-family: "DM Sans", sans-serif;
+	 color: #c3c5d5 !important;
 }
  .status-menu {
 	 padding: 20px;

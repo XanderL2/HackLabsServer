@@ -7,7 +7,9 @@ from controllers.authentication import Authentication;
 from controllers.register import Register;
 from controllers.sessionController import EstablishSesion;
 from controllers.main import GetUserInfo, GetUserStatistics, GetUsers;
-from controllers.settings import PatchData;
+from controllers.settings import PatchData, SavePhoto;
+
+
 
 
 #Analisis
@@ -131,28 +133,35 @@ def VerifyAuthentication():
     
 
 
+
+
 #! Privates Routes
 @app.route("/main", methods = ['GET'])
 def index():
 
-
+    
     userId = session.get("userId");
 
-    userInfo = GetUserInfo(userId)[0];
+
+    users = GetUsers(); 
+
+
+    userInfo = GetUserInfo(userId, users);
     userStatistics = GetUserStatistics(userId);    
-    users = GetUsers();
+
+
+
     tools = FavoriteTools(userId);
-    topUsers = TopUsers();
+    topUsers = TopUsers(users);
 
 
-
-
+    
 
 
 
     return render_template('main.html', 
-                           username=userInfo.get("username"), 
-                           userStatistics=userStatistics, 
+                           user = userInfo, 
+                           userStatistics = userStatistics, 
                            users = users,
                            tools = tools,
                            topUsers = topUsers
@@ -161,11 +170,14 @@ def index():
 
        
 
-
-
 @app.route("/settings", methods = ['GET'])
 def GETsettings():
-    return render_template('settings.html')
+    
+
+    token = session.get("token")    
+    return render_template('settings.html', token = token)
+
+
 
 
 
@@ -174,47 +186,38 @@ def GETsettings():
 def POSTsettings():
     
     
-        
-    # print(session) 
-
-    # print(request.form)
-    # print(type(request.files.get("photo"))) 
+    response = PatchData(request, session)
+   
     
-
-    response = PatchData(request.form, session)
-    
-    
-     
 
     if(response == False): 
-        return render_template('settings.html', error = "Empty form");
-
-    
+        return render_template('settings.html', error = "Incorrect form!");
 
 
-    if(response.status_code == 400): 
-        
+    if(response.status_code >= 400): 
+
         error = response.json(); 
         error = error.get("Message")
-
         
-    return render_template('settings.html', error = error);
-
-    # return render_template('settings.html');
+        return render_template('settings.html', error = error);
 
 
+    SavePhoto(request.files, session)
+
+    return render_template('settings.html', error=False);
 
 
 
-    
 
-
-    
-    
 
     
 
-    return render_template('settings.html', error = False)
+
+    
+    
+
+    
+
 
 
 

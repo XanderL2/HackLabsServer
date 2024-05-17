@@ -7,7 +7,7 @@ from configs import HOST, API_PORT, API_PROTOCOL;
 endpoint =  f'{API_PROTOCOL}://{HOST}:{API_PORT}/api/';
 
 
-def PatchData(form, session):
+def PatchData(request, session):
     
     token = session.get("token"); 
 
@@ -16,17 +16,18 @@ def PatchData(form, session):
         "x-access-token": token
     };
 
+    print(headers)
    
     body = {};  
 
 
-    for key, value in form.items():
+    for key, value in request.form.items():
         if(value != ""):
             body.update({key: value});
 
     
 
-    if(body == {}): return False
+    if(body == {} and request.files.get("photo") == None): return False
     
     response = req.patch(endpoint + "users", json=body, headers=headers);    
 
@@ -39,27 +40,37 @@ def PatchData(form, session):
     
 def SavePhoto(filesDict, session):
 
+    formats = ("png", 'jpeg', "jpg")
 
-    photo = filesDict.get('photo');   
+    photo = filesDict.get('photo')
 
-    if(photo == None):
-        return False;
-
-
-
-    userId = session.get("userId");
-    listsImages = os.listdir("../static/profile")
 
     
-    for image in listsImages:
-        if(image == f"{userId}.png"): 
-            os.remove(f"../static/profile/{userId}.png");
+    if photo is None or not photo.filename.lower().endswith(formats):
+        return False
+
+
+    userId = session.get("userId")
+    newFileName= f"{userId}.png"  
+
+
+    # Unificamos esta ruta para verificar si existe 
+    pathFile = os.path.join("/static/profile", newFileName)
+
+
+    
+    if os.path.exists(pathFile):
+        os.remove(pathFile)
+
+
+    # Guardamos la foto de perfil 
+    photo.save(os.path.join("static/profile", newFileName))
 
     
 
+
     
 
-    photo.save('/static/profile', )
     
 
 

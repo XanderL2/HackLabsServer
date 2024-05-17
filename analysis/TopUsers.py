@@ -16,17 +16,14 @@ endpoint =  f'{API_PROTOCOL}://{HOST}:{API_PORT}/api/';
 
 
 
-def TopUsers(limit = 5):
+def TopUsers(usersJson, limit = 5):
 
 
     statisticsResp = req.get(endpoint + "/statistics");
 
 
 
-
-
     if(statisticsResp.status_code != 200): return False;
-
 
 
 
@@ -37,35 +34,19 @@ def TopUsers(limit = 5):
 
 
 
-
-    usersId = []
-
-
-    for index, value in statisticsDF.items():
-        usersId.append(index);
+    usersId = statisticsDF.index.tolist()
 
 
 
+    # Buscar los usuarios correspondientes a los IDs en usersId
+    users = [user for user in usersJson if user.get("id") in usersId]
 
-
-    users = []
-
-    for user in usersId:
-
-
-        userInfo = req.get(endpoint + f"/users/{user}");
-
-        if(userInfo.status_code != 200): return False;
-
-
-
-
-        users.append(userInfo.json()[0]);
-        
-
-
+    # Ordenar los usuarios según el orden de usersId
+    users.sort(key=lambda x: usersId.index(x.get("id")))
 
     return users
+
+
     
     
 

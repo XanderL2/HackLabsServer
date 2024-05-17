@@ -1,14 +1,18 @@
 import requests as req;
+import os;
+
 
 from flask import session;
 from controllers.register import endpoint;
 
 
-def GetUserInfo(userId):
+def GetUserInfo(userId, json):
 
-    response = req.get(endpoint + f"/users/{userId}");
+    for user in json:
+        if(user.get("id") == userId): return user 
     
-    return response.json();
+
+    
 
 
 def GetUserStatistics(userId):
@@ -44,8 +48,37 @@ def GetUserStatistics(userId):
 def GetUsers():
     response = req.get(endpoint + f"/users/");
     response = response.json();
+    
 
     return response;
+
+def GetUsers():
+
+    response = req.get(endpoint + f"/users/");
+    response = response.json();
+
+    
+
+    for user in response:    
+
+        pathFile = os.path.join("static/profile", f"{user.get('id')}.png");
+
+
+        if(os.path.exists(pathFile)):
+            user["photo"] = pathFile; 
+
+        else:
+            user["photo"] = "/static/profile/default.png"
+        
+
+    
+
+    return response;
+
+
+
+
+
 
 
 
