@@ -4,6 +4,9 @@
 	 box-sizing: border-box;
 	scroll-behavior: smooth;
 }
+
+
+
  html {
 	 box-sizing: border-box;
 	 -webkit-font-smoothing: antialiased;
@@ -90,6 +93,7 @@
 	 display: flex;
 	 flex-direction: column;
 	 background-color: #181d2f;
+
 }
  .logo {
 	 font-family: "DM Sans", sans-serif;

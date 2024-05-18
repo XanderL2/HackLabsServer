@@ -28,10 +28,12 @@ def Promises():
     dfUsers.rename(columns={'id': 'userId'}, inplace=True)
     dfStatistics = dfStatistics.merge(dfUsers, on='userId', how='left').drop(columns=['state', 'createdAt'])
 
+
     
 
     # Data Analysis 
-    dfStatistics = dfStatistics.groupby("username", as_index=False).agg({'machine': 'sum', 'age': 'first'})\
+    dfStatistics = dfStatistics.query('age <= 20')\
+                    .groupby("username", as_index=False).agg({'machine': 'sum', 'age': 'first'})\
                     .sort_values(by=['machine', 'age'], ascending=[False, True]).head(5)
 
 

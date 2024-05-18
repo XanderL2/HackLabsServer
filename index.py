@@ -17,7 +17,7 @@ from analysis.FavoriteTools import FavoriteTools
 from analysis.TopUsers import TopUsers;
 from analysis.ActivityLog import LogsPerUser;
 from analysis.Promises import Promises;
-
+from analysis.TopRankedsTools import TopRankedsTools;
 
 
 
@@ -153,10 +153,9 @@ def index():
     topUsers = TopUsers(users);
     graphicUser = LogsPerUser(userId);
     promises = Promises()
+    topRankedsTools = TopRankedsTools();
 
 
-    # Provisional
-    
 
 
 
@@ -167,8 +166,9 @@ def index():
                            users = users,
                            tools = tools,
                            topUsers = topUsers,
-                           promises = promises
-                           
+                           promises = promises,
+                           topRankedsTools = topRankedsTools
+
                     );      
 
 
@@ -198,6 +198,7 @@ def userProfile(userId):
     topUsers = TopUsers(users);
     graphicUser = LogsPerUser(userId);
 
+    
 
 
 
@@ -224,12 +225,12 @@ def userProfile(userId):
 
 @app.route("/settings", methods = ['GET'])
 def GETsettings():
-    
 
     token = session.get("token")    
     return render_template('settings.html', token = token)
 
     
+
 
 @app.route("/settings", methods = ['POST'])
 def POSTsettings():

@@ -339,20 +339,11 @@
               </div>
 
             </div>
-
-
-
-
-
-          <!--       ?General Posts         -->
-
-
-
-
-
-
           </div>
 
+
+
+          <!-- ? Posts           -->
               <div class="album box" id="statistics">
 
                 <div class="status-main">
@@ -389,8 +380,154 @@
               </div>
 
 
+
+
+
+
+
+
+
+
+
+              <div class="album box" id="statistics">
+
+                <div class="status-main">
+                  <img
+                    src="../static/resources/images/best1.jpeg"
+                    class="status-img"
+                  />
+                  <div class="album-detail">
+                    <div class="album-title">
+                      <strong>Admin</strong> create new <span>Statistic</span>
+                    </div>
+                    <div class="album-date">{{user['createdAt']}}</div>
+                  </div>
+                  <button class="intro-menu"></button>
+                </div>
+
+                <div class="album-content">
+                  Our 5 most ranked tools!!      😃👍.
+
+                  {% for user in topRankedsTools['name']%}
+
+                    <p> 🔥         {{user}}</p>
+
+                  {% endfor %} 
+
+                  <div class="album-photos">
+                    <img
+                      src="{{topRankedsTools['path']}}"
+                      alt=""
+                      class="album-photo"
+                    />
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
+
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <!-- ? Right Side -->
 
