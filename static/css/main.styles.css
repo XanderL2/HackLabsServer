@@ -574,14 +574,7 @@
 	 border-radius: 4px;
 	 margin-top: 10px;
 }
- .album-photos {
-	 display: flex;
-	 margin-top: 20px;
-	 max-height: 30vh;
-}
- .album-photos > .album-photo {
-	 width: 50%;
-}
+
  .album-right {
 	 width: 50%;
 	 margin-left: 10px;

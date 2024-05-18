@@ -12,9 +12,10 @@ from controllers.settings import PatchData, SavePhoto;
 
 
 
-#Analisis
+#Analysis
 from analysis.FavoriteTools import FavoriteTools
 from analysis.TopUsers import TopUsers;
+from analysis.activityLog import LogsPerUser;
 
 
 
@@ -86,6 +87,8 @@ def GETLogin():
 def POSTLogin():
 
 
+    
+
     try:
         
         response = Authentication(request.form)
@@ -116,7 +119,6 @@ def POSTLogin():
 
 
 
-
 #! Authentication middleware
 @app.before_request
 def VerifyAuthentication():
@@ -140,32 +142,33 @@ def VerifyAuthentication():
 def index():
 
     
+    users  = GetUsers();
     userId = session.get("userId");
 
-    users  = GetUsers();
     userInfo = GetUserInfo(userId, users);
     userStatistics = GetUserStatistics(userId);    
 
 
     tools = FavoriteTools(userId);
     topUsers = TopUsers(users);
+    graphicUser = LogsPerUser(userId);
 
-
-    
 
 
 
     return render_template('main.html', 
+                           graphicUser = graphicUser,
                            user = userInfo, 
                            userStatistics = userStatistics, 
                            users = users,
                            tools = tools,
                            topUsers = topUsers
+                        
+                           
                     );      
 
 
        
-
 
 @app.route('/main/<int:userId>')
 def userProfile(userId):
@@ -184,16 +187,18 @@ def userProfile(userId):
         return render_template('errorPage.html', error=404, e="User Not Exists!"), 404  
 
 
-    print(users)
 
     
     userStatistics = GetUserStatistics(userId);    
     tools = FavoriteTools(userId);
     topUsers = TopUsers(users);
+    graphicUser = LogsPerUser(userId);
+
 
 
 
     return render_template('profiles.html', 
+                           graphicUser = graphicUser,
                            sessionPhoto = GetUserInfo(session["userId"], users).get("photo"),
                            user = ExistsUser, 
                            userStatistics = userStatistics, 
@@ -285,14 +290,9 @@ def statistics():
 
     
 
-    xd = TopUsers();
 
 
-    print(xd)
-
-
-
-    return "xd"
+    return render_template('statistics.html');
 
 
 

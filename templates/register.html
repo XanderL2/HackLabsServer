@@ -1,66 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/register.styles.css')}}"
+    />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/register.styles.css')}}">
-
-    <link rel="icon" type="image/png" sizes="180x180"
-        href="{{ url_for('static', filename='/resources/images/logo-removebg-preview.png') }}">
-
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="180x180"
+      href="{{ url_for('static', filename='/resources/images/logo-removebg-preview.png') }}"
+    />
 
     <title>Register</title>
+  </head>
 
-</head>
-
-<body>
-
-
+  <body>
     <div class="ring">
-        
-        <i style="--clr:#00ff0a;"></i>
-        <i style="--clr:#ff0057;"></i>
-        <i style="--clr:#fffd44;"></i>
+      <i style="--clr: #00ff0a"></i>
+      <i style="--clr: #ff0057"></i>
+      <i style="--clr: #fffd44"></i>
 
+      <form class="login" method="post">
+        <h2>Hack Labs Register</h2>
+        <div class="inputBx">
+          <input type="text" placeholder="Username" name="username" />
+        </div>
 
-        <form class="login" method="post">
+        <div class="inputBx">
+          <input type="password" placeholder="Password" name="password" />
+        </div>
 
-            <h2>Hack Labs Register</h2>
-            <div class="inputBx">
-                <input type="text" placeholder="Username" name="username">
-            </div>
+        <div class="inputBx">
+          <input type="text" placeholder="Age" name="age" />
+        </div>
 
-            <div class="inputBx">
-                <input type="password" placeholder="Password" name="password">
-            </div>
+        <div class="inputBx">
+          <input type="submit" value="Sign in" />
+        </div>
 
-            <div class="inputBx">
-                <input type="text" placeholder="Age" name="age">
-            </div>
+        {% if error %}
+        <h1 class="error" style="color: #ff0057">{{error}}</h1>
 
+        {% else %}
 
-            <div class="inputBx">
-                <input type="submit" value="Sign in">
-            </div>
+        <h1 class="error" style="color: #5eff00">Sigup</h1>
+        {% endif %}
 
-            {% if error %}
-                <h1 class="error" style="color: #ff0057;">{{error}}</h1>
-
-            {% else %}
-
-                <h1 class="error" style="color: #5eff00;">Sigup</h1>
-            {% endif %}
-
-
-            <div class="links">
-                <a href="login">Signup</a>
-            </div>
-
-        </form>
+        <div class="links">
+          <a href="login">Signup</a>
+        </div>
+      </form>
     </div>
-
-
-</body>
-
+  </body>
 </html>
