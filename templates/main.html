@@ -171,7 +171,6 @@
                         </svg>
                         Defensive
                     </a> -->
-
           </div>
         </div>
 
@@ -305,20 +304,14 @@
 
             <!-- ?      Statistics      -->
 
-
             <div class="timeline-right">
-
-
               <div class="album box">
-
                 <div class="status-main">
-                  <img
-                    src="{{user['photo']}}"
-                    class="status-img"
-                  />
+                  <img src="{{user['photo']}}" class="status-img" />
                   <div class="album-detail">
                     <div class="album-title">
-                      <strong>{{user['username']}}</strong> create new <span>Statistic</span>
+                      <strong>{{user['username']}}</strong> create new
+                      <span>Statistic</span>
                     </div>
                     <div class="album-date">{{user['createdAt']}}</div>
                   </div>
@@ -326,208 +319,79 @@
                 </div>
 
                 <div class="album-content">
-                The adventure begins!     🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑
+                  The adventure begins! 🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑🤑
 
                   <div class="album-photos">
-                    <img
-                      src="{{graphicUser}}"
-                      alt=""
-                      class="album-photo"
-                    />
+                    <img src="{{graphicUser}}" alt="" class="album-photo" />
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
-
-
           <!-- ? Posts           -->
-              <div class="album box" id="statistics">
-
-                <div class="status-main">
-                  <img
-                    src="../static/resources/images/best1.jpeg"
-                    class="status-img"
-                  />
-                  <div class="album-detail">
-                    <div class="album-title">
-                      <strong>Admin</strong> create new <span>Statistic</span>
-                    </div>
-                    <div class="album-date">{{user['createdAt']}}</div>
-                  </div>
-                  <button class="intro-menu"></button>
+          <div class="album box" id="statistics">
+            <div class="status-main">
+              <img
+                src="../static/resources/images/best1.jpeg"
+                class="status-img"
+              />
+              <div class="album-detail">
+                <div class="album-title">
+                  <strong>Admin</strong> create new <span>Statistic</span>
                 </div>
-
-                <div class="album-content">
-                  Our future promises!!      😎👍
-
-                  {% for user in promises['users']%}
-
-                    <p> ⭐         {{user}}</p>
-
-                  {% endfor %} 
-
-                  <div class="album-photos">
-                    <img
-                      src="{{promises['path']}}"
-                      alt=""
-                      class="album-photo"
-                    />
-                  </div>
-                </div>
+                <div class="album-date">{{user['createdAt']}}</div>
               </div>
+              <button class="intro-menu"></button>
+            </div>
 
+            <div class="album-content">
+              Our future promises!! 😎👍 {% for user in promises['users']%}
 
+              <p>⭐ {{user}}</p>
 
+              {% endfor %}
 
-
-
-
-
-
-
-
-              <div class="album box" id="statistics">
-
-                <div class="status-main">
-                  <img
-                    src="../static/resources/images/best1.jpeg"
-                    class="status-img"
-                  />
-                  <div class="album-detail">
-                    <div class="album-title">
-                      <strong>Admin</strong> create new <span>Statistic</span>
-                    </div>
-                    <div class="album-date">{{user['createdAt']}}</div>
-                  </div>
-                  <button class="intro-menu"></button>
-                </div>
-
-                <div class="album-content">
-                  Our 5 most ranked tools!!      😃👍.
-
-                  {% for user in topRankedsTools['name']%}
-
-                    <p> 🔥         {{user}}</p>
-
-                  {% endfor %} 
-
-                  <div class="album-photos">
-                    <img
-                      src="{{topRankedsTools['path']}}"
-                      alt=""
-                      class="album-photo"
-                    />
-                  </div>
-                </div>
+              <div class="album-photos">
+                <img src="{{promises['path']}}" alt="" class="album-photo" />
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            </div>
+          </div>
+
+          <div class="album box" id="statistics">
+            <div class="status-main">
+              <img
+                src="../static/resources/images/best1.jpeg"
+                class="status-img"
+              />
+              <div class="album-detail">
+                <div class="album-title">
+                  <strong>Admin</strong> create new <span>Statistic</span>
+                </div>
+                <div class="album-date">{{user['createdAt']}}</div>
+              </div>
+              <button class="intro-menu"></button>
+            </div>
+
+            <div class="album-content">
+              Our 5 most ranked tools!! 😃👍. {% for user in
+              topRankedsTools['name']%}
+
+              <p>🔥 {{user}}</p>
+
+              {% endfor %}
+
+              <div class="album-photos">
+                <img
+                  src="{{topRankedsTools['path']}}"
+                  alt=""
+                  class="album-photo"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <!-- ? Right Side -->
 
@@ -536,7 +400,7 @@
           <!--? Log out Buton-->
 
           <button class="account-button">
-            <p style="font-weight: 900; color: rgb(0, 126, 114)">Logout</p>
+            <a style="font-weight: 900; color: rgb(0, 126, 114)" href="/logout">Logout</a>
           </button>
 
           <button class="account-button">

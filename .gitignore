@@ -2,3 +2,4 @@
 /__pycache__
 /controllers/__pycache__/
 /analysis/__pycache__/
+.mypy_cache/

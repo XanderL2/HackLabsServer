@@ -9,14 +9,14 @@ endpoint =  f'{API_PROTOCOL}://{HOST}:{API_PORT}/api/';
 
 def PatchData(request, session):
     
-    token = session.get("token"); 
 
+    token = session.get("token"); 
      
+
     headers = {
         "x-access-token": token
     };
 
-    print(headers)
    
     body = {};  
 
@@ -41,7 +41,6 @@ def PatchData(request, session):
 def SavePhoto(filesDict, session):
 
     formats = ("png", 'jpeg', "jpg")
-
     photo = filesDict.get('photo')
 
 
@@ -54,7 +53,6 @@ def SavePhoto(filesDict, session):
     newFileName= f"{userId}.png"  
 
 
-    # Unificamos esta ruta para verificar si existe 
     pathFile = os.path.join("/static/profile", newFileName)
 
 
@@ -63,28 +61,4 @@ def SavePhoto(filesDict, session):
         os.remove(pathFile)
 
 
-    # Guardamos la foto de perfil 
     photo.save(os.path.join("static/profile", newFileName))
-
-    
-
-
-    
-
-    
-
-
-
-
-    
-
-    
-    
-
-     
-    
-    
-
-
-
-

@@ -23,7 +23,6 @@ def LogsPerUser(userId):
 
     # Data Extraction
     df = pd.DataFrame(response.json());
-
     df = df.query(f"userId == {userId}").copy()
 
     if(df.empty):

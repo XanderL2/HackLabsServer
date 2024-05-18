@@ -18,13 +18,11 @@ endpoint =  f'{API_PROTOCOL}://{HOST}:{API_PORT}/api/';
 
 def TopUsers(usersJson, limit = 5):
 
-
     statisticsResp = req.get(endpoint + "/statistics");
 
 
 
     if(statisticsResp.status_code != 200): return False;
-
 
 
     statisticsDF = pd.DataFrame(statisticsResp.json());
@@ -36,13 +34,12 @@ def TopUsers(usersJson, limit = 5):
 
     usersId = statisticsDF.index.tolist()
 
-
-
     # Buscar los usuarios correspondientes a los IDs en usersId
     users = [user for user in usersJson if user.get("id") in usersId]
 
     # Ordenar los usuarios según el orden de usersId
     users.sort(key=lambda x: usersId.index(x.get("id")))
+
 
     return users
 

@@ -12,7 +12,6 @@ from analysis.FavoriteTools import endpoint;
 
 def Promises():
    
-
     # Data Extraction
     statisticsRes= req.get(endpoint + f"/statistics"); 
     usersRes= req.get(endpoint + f"/users"); 

@@ -30,5 +30,3 @@ def Register(requestForm):
     except Exception as e: 
 
         return e;
-
- 

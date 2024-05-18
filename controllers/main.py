@@ -80,21 +80,3 @@ def GetUsers():
     
 
     return response;
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-

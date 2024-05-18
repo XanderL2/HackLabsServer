@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, make_response, redirect, url_
 import configs;
 from controllers.authentication import Authentication;
 from controllers.register import Register;
-from controllers.sessionController import EstablishSesion;
+from controllers.sessionController import EstablishSesion, Logout;
 from controllers.main import GetUserInfo, GetUserStatistics, GetUsers;
 from controllers.settings import PatchData, SavePhoto;
 
@@ -20,13 +20,8 @@ from analysis.Promises import Promises;
 from analysis.TopRankedsTools import TopRankedsTools;
 
 
-
-
-
 #Environment Variables
 from configs import HOST, API_PORT, SECRET, API_PROTOCOL
-
-
 
 
 endpoint =  f'{API_PROTOCOL}://{HOST}:{API_PORT}/api/';
@@ -35,10 +30,18 @@ app.secret_key = SECRET;
 
 
 
+
+
+
+
+
 #Index Route
 @app.route("/", methods = ['GET', 'POST'])
 def root():
     return render_template('index.html', endpoint=endpoint + "/users");
+
+
+
 
 
 
@@ -64,12 +67,15 @@ def POSTregister():
             return render_template('register.html', error = body.get("Message"));
 
 
-
         return redirect(url_for("GETLogin"));
 
 
     except Exception as e:
         return render_template('errorPage.html', error=500, e=e), 500  
+
+
+
+
 
 
 
@@ -86,8 +92,6 @@ def GETLogin():
 @app.route("/login", methods = ['POST'])
 def POSTLogin():
 
-
-    
 
     try:
         
@@ -119,10 +123,13 @@ def POSTLogin():
 
 
 
+
+
+
+
 #! Authentication middleware
 @app.before_request
 def VerifyAuthentication():
-
 
     isNotPublicRoute = request.endpoint not in ['root', 'GETregister', 'POSTregister', 'GETLogin', 'POSTLogin'];
     isNotStaticRoute = not request.path.startswith('/static')
@@ -142,24 +149,22 @@ def VerifyAuthentication():
 def index():
 
     
-    users  = GetUsers();
-    userId = session.get("userId");
+    try:    
+        users  = GetUsers();
+        userId = session.get("userId");
 
-    userInfo = GetUserInfo(userId, users);
-    userStatistics = GetUserStatistics(userId);    
-
-
-    tools = FavoriteTools(userId);
-    topUsers = TopUsers(users);
-    graphicUser = LogsPerUser(userId);
-    promises = Promises()
-    topRankedsTools = TopRankedsTools();
+        userInfo = GetUserInfo(userId, users);
+        userStatistics = GetUserStatistics(userId);    
 
 
+        tools = FavoriteTools(userId);
+        topUsers = TopUsers(users);
+        graphicUser = LogsPerUser(userId);
+        promises = Promises()
+        topRankedsTools = TopRankedsTools();
 
+        return render_template('main.html', 
 
-
-    return render_template('main.html', 
                            graphicUser = graphicUser,
                            user = userInfo, 
                            userStatistics = userStatistics, 
@@ -168,8 +173,13 @@ def index():
                            topUsers = topUsers,
                            promises = promises,
                            topRankedsTools = topRankedsTools
-
                     );      
+
+
+    except Exception as e:
+        return render_template('errorPage.html', error=500, e=e), 500  
+
+
 
 
        
@@ -186,37 +196,35 @@ def userProfile(userId):
 
 
 
-    ExistsUser = GetUserInfo(userId, users);
-    if(ExistsUser == False):
-        return render_template('errorPage.html', error=404, e="User Not Exists!"), 404  
+    try:
+        ExistsUser = GetUserInfo(userId, users);
+        if(ExistsUser == False):
+            return render_template('errorPage.html', error=404, e="User Not Exists!"), 404  
 
 
 
     
-    userStatistics = GetUserStatistics(userId);    
-    tools = FavoriteTools(userId);
-    topUsers = TopUsers(users);
-    graphicUser = LogsPerUser(userId);
-
-    
-
-
-
-    return render_template('profiles.html', 
-                           graphicUser = graphicUser,
-                           sessionPhoto = GetUserInfo(session["userId"], users).get("photo"),
-                           user = ExistsUser, 
-                           userStatistics = userStatistics, 
-                           users = users,
-                           tools = tools,
-                           topUsers = topUsers
-
-                    );      
+        userStatistics = GetUserStatistics(userId);    
+        tools = FavoriteTools(userId);
+        topUsers = TopUsers(users);
+        graphicUser = LogsPerUser(userId);
 
 
 
 
+        return render_template('profiles.html', 
+                            graphicUser = graphicUser,
+                            sessionPhoto = GetUserInfo(session["userId"], users).get("photo"),
+                            user = ExistsUser, 
+                            userStatistics = userStatistics, 
+                            users = users,
+                            tools = tools,
+                            topUsers = topUsers
 
+                        );      
+
+    except Exception as e:
+        return render_template('errorPage.html', error=500, e=e), 500  
 
 
 
@@ -232,31 +240,46 @@ def GETsettings():
     
 
 
+
 @app.route("/settings", methods = ['POST'])
 def POSTsettings():
     
+    try: 
+
+        response = PatchData(request, session)
     
-    response = PatchData(request, session)
-   
-    
-
-    if(response == False): 
-        return render_template('settings.html', error = "Incorrect form!");
-
-
-    if(response.status_code >= 400): 
-
-        error = response.json(); 
-        error = error.get("Message")
         
-        return render_template('settings.html', error = error);
+
+        if(response == False): 
+            return render_template('settings.html', error = "Incorrect form!");
+
+        if(response.status_code >= 400): 
+            error = response.json(); 
+            error = error.get("Message")
+            
+            return render_template('settings.html', error = error);
 
 
-    SavePhoto(request.files, session)
+        SavePhoto(request.files, session)
+        return render_template('settings.html', error=False);
 
-    return render_template('settings.html', error=False);
+
+    except Exception as e:
+        return render_template('errorPage.html', error=500, e=e), 500  
 
 
+@app.route("/logout")
+def logout():
+
+    try:    
+
+        Logout();
+        session.clear();
+
+        return redirect(url_for("GETLogin"))
+        
+    except Exception as e:
+        return render_template('errorPage.html', error=500, e=e), 500  
 
 
 
@@ -267,31 +290,6 @@ def POSTsettings():
     
 
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
