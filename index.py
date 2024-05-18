@@ -15,8 +15,8 @@ from controllers.settings import PatchData, SavePhoto;
 #Analysis
 from analysis.FavoriteTools import FavoriteTools
 from analysis.TopUsers import TopUsers;
-from analysis.activityLog import LogsPerUser;
-
+from analysis.ActivityLog import LogsPerUser;
+from analysis.Promises import Promises;
 
 
 
@@ -152,7 +152,11 @@ def index():
     tools = FavoriteTools(userId);
     topUsers = TopUsers(users);
     graphicUser = LogsPerUser(userId);
+    promises = Promises()
 
+
+    # Provisional
+    
 
 
 
@@ -162,8 +166,8 @@ def index():
                            userStatistics = userStatistics, 
                            users = users,
                            tools = tools,
-                           topUsers = topUsers
-                        
+                           topUsers = topUsers,
+                           promises = promises
                            
                     );      
 

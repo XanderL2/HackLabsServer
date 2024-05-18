@@ -370,10 +370,17 @@
                 </div>
 
                 <div class="album-content">
-                Our future promises!!      😎👍
+                  Our future promises!!      😎👍
+
+                  {% for user in promises['users']%}
+
+                    <p> ⭐         {{user}}</p>
+
+                  {% endfor %} 
+
                   <div class="album-photos">
                     <img
-                      src="{{graphicUser}}"
+                      src="{{promises['path']}}"
                       alt=""
                       class="album-photo"
                     />
