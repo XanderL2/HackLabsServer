@@ -7,10 +7,8 @@ import pandas as pd;
 
 # Añadir el directorio padre al PYTHONPATH
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")));
-
-
-
 from configs import HOST, API_PORT, API_PROTOCOL;
+
 
 
 
@@ -26,11 +24,9 @@ def FavoriteTools(userId):
 
 
     if(statistics.status_code != 200): return False
-
-
-
-
     statisticsDF = pd.DataFrame(statistics.json());
+
+
 
     statisticsDF = statisticsDF.groupby("toolId")["loss"].count()\
                     .sort_values(ascending=False).head(5)

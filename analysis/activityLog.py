@@ -1,7 +1,7 @@
 import pandas as pd;
 import requests as req;
 import matplotlib.pyplot as plt
-import os, sys;
+import os;
 
 
 from datetime import datetime
@@ -17,10 +17,6 @@ def LogsPerUser(userId):
 
     response = req.get(endpoint + f"/statistics"); 
     
-
-
-   
-
     # Get current year
     currentYear = datetime.now().year
 
@@ -32,7 +28,6 @@ def LogsPerUser(userId):
 
     if(df.empty):
         return f"/static/resources/images/asset1.png"
-
 
 
 
@@ -88,36 +83,6 @@ def LogsPerUser(userId):
     plt.savefig(path, bbox_inches='tight', dpi=300);
 
     return path
-
-
-
-
-
-    
-    
-    
-
-
-
-
-    
-
-
-    
-
-
-
-
-
-
-# LogsPerUser(51, response.json())
-
-
-
-# print(datetime.date.today())
-# print(datetime.datetime.now().time())
-        
-
 
      
 

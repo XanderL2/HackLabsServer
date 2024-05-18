@@ -2,6 +2,7 @@
  * {
 	 outline: none;
 	 box-sizing: border-box;
+	scroll-behavior: smooth;
 }
  html {
 	 box-sizing: border-box;
@@ -301,6 +302,7 @@
 }
  .timeline-left {
 	 width: 310px;
+	 height: 570px;
 	 flex-shrink: 0;
 }
  .timeline-right {
@@ -368,11 +370,13 @@
 }
  .event {
 	 position: relative;
-	 margin-top: 20px;
+	 margin-top: 25px;
 	 padding: 10px;
+	 padding-bottom: 14%;
 }
  .event-wrapper {
 	 position: relative;
+
 }
  .event-img {
 	 max-width: 100%;
@@ -383,6 +387,9 @@
 	 position: absolute;
 	 left: 20px;
 	 top: 15px;
+
+	 text-decoration: none !important;
+
 }
  .event-month {
 	 background-color: #1687fa;
@@ -394,6 +401,8 @@
 	 border-radius: 4px 4px 0 0;
 }
  .event-day {
+
+	 text-decoration: none !important;
 	 width: 100%;
 	 backdrop-filter: blur(4px);
 	 color: #fff;
@@ -407,8 +416,9 @@
  .event-title {
 
 	 color: #c3c5d5 !important;
-
+	 text-decoration: none !important;
 	 margin-bottom: 5px;
+	 margin-top: 2%;
 	 font-family: "DM Sans", sans-serif;
 	 font-weight: 600;
 	 padding: 0 14px;
@@ -542,7 +552,7 @@
 }
  .album {
 	 padding-top: 20px;
-	 margin-top: 20px;
+	 margin-bottom: 20px;
 }
  .album .status-main {
 	 border: none;

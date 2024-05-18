@@ -285,16 +285,6 @@ def POSTsettings():
 
 
 
-@app.route("/statistics", methods = ['GET'])
-def statistics():
-
-    
-
-
-
-    return render_template('statistics.html');
-
-
 
 
 
