@@ -282,8 +282,9 @@ def logout():
         return render_template('errorPage.html', error=500, e=e), 500  
 
 
-
-    
+@app.errorhandler(404)
+def NotFound(error):
+    return render_template('errorPage.html', error=404, e="Not Found!"), 404   
 
 
     

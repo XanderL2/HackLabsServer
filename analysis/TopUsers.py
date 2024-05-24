@@ -3,12 +3,9 @@ import requests as req;
 import pandas as pd;
 
 
-
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")));
-# Añadir el directorio padre al PYTHONPATH
-
 from configs import HOST, API_PORT, API_PROTOCOL;
+
 
 
 endpoint =  f'{API_PROTOCOL}://{HOST}:{API_PORT}/api/';
