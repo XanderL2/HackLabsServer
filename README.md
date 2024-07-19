@@ -36,8 +36,8 @@ Ademas, esta te permite ver las estadisticas de otras personas, ver las personas
 
     - *Flask:* Servicio para retorno de paginas principal.
 
-![enter image description here](https://raw.githubusercontent.com/XanderL2/HackLabsServer/main/.preview/index.png)<br>
-![enter image description here](https://raw.githubusercontent.com/XanderL2/HackLabsServer/main/.preview/landing.png)
+   ![enter image description here](https://raw.githubusercontent.com/XanderL2/HackLabsServer/main/.preview/index.png)<br>
+   ![enter image description here](https://raw.githubusercontent.com/XanderL2/HackLabsServer/main/.preview/landing.png)
 
 
 ### Referencias:
